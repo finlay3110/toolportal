@@ -157,8 +157,12 @@
     align-items:center;
     justify-content:center;
     margin-bottom:16px;
-    font-size:22px;
     box-shadow:0 4px 14px rgba(221,122,43,0.35);
+  }
+
+  .card-icon svg{
+    width:24px;
+    height:24px;
   }
 
   .card-title{
@@ -253,6 +257,56 @@
     50%{ opacity:1; }
   }
 
+  /* Entrance animation */
+  @keyframes fadeInUp{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  header{
+    opacity:0;
+    animation:fadeInUp 0.7s ease forwards;
+  }
+
+  .divider{
+    opacity:0;
+    animation:fadeInUp 0.7s ease forwards;
+    animation-delay:0.15s;
+  }
+
+  .card, .official-card{
+    opacity:0;
+    animation:fadeInUp 0.6s ease forwards;
+  }
+
+  main .card:nth-of-type(1){ animation-delay:0.25s; }
+  main .card:nth-of-type(2){ animation-delay:0.35s; }
+  main .card:nth-of-type(3){ animation-delay:0.45s; }
+  main .card:nth-of-type(4){ animation-delay:0.55s; }
+
+  .section-label{
+    opacity:0;
+    animation:fadeInUp 0.6s ease forwards;
+    animation-delay:0.65s;
+  }
+
+  .official-row .official-card:nth-of-type(1){ animation-delay:0.75s; }
+  .official-row .official-card:nth-of-type(2){ animation-delay:0.85s; }
+
+  footer{
+    opacity:0;
+    animation:fadeInUp 0.6s ease forwards;
+    animation-delay:0.95s;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    header, .divider, .card, .official-card, .section-label, footer{
+      animation:none;
+      opacity:1;
+      transform:none;
+    }
+  }
+
   footer{
     margin-top:44px;
     text-align:center;
@@ -320,7 +374,11 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:20px;
+  }
+
+  .official-icon svg{
+    width:20px;
+    height:20px;
   }
 
   .official-text{ flex-grow:1; }
@@ -369,7 +427,13 @@
 
     <div class="card">
       <div class="card-tag">Personnel</div>
-      <div class="card-icon">🪪</div>
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2.5" y="5" width="19" height="14" rx="2" stroke="white" stroke-width="1.6"/>
+          <circle cx="8" cy="12" r="2.1" stroke="white" stroke-width="1.5"/>
+          <path d="M13 10h6M13 14h4" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
       <div class="card-title">ID CARD GENERATOR</div>
       <div class="card-desc">
         Build and print a fleet-standard crew ID card — rank, division, clearance level, photo, and barcode or QR, formatted to true CR-80 size.
@@ -383,7 +447,13 @@
 
     <div class="card">
       <div class="card-tag">Operations</div>
-      <div class="card-icon">🛰️</div>
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="12" r="2" stroke="white" stroke-width="1.6"/>
+          <path d="M12 4v2.2M12 17.8V20M4 12h2.2M17.8 12H20" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M7 7l1.5 1.5M17 7l-1.5 1.5M7 17l1.5-1.5M17 17l-1.5-1.5" stroke="white" stroke-width="1.4" stroke-linecap="round" opacity="0.65"/>
+        </svg>
+      </div>
       <div class="card-title">MISSION COMPANION</div>
       <div class="card-desc">
         Your in-bridge reference companion for active missions — quick access to procedures, guides, and operational tools.
@@ -397,7 +467,13 @@
 
     <div class="card">
       <div class="card-tag">Morale</div>
-      <div class="card-icon">⚓</div>
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="5.5" r="1.8" stroke="white" stroke-width="1.5"/>
+          <path d="M12 7.3V18M7 10h10" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M5 13c0 3 3 5.5 7 6 4-0.5 7-3 7-6" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
       <div class="card-title">SHANTY SONGBOOK</div>
       <div class="card-desc">
         The full digital songbook — searchable lyrics, favourites, chorus highlighting, and offline-ready access for every watch.
@@ -411,7 +487,13 @@
 
     <div class="card">
       <div class="card-tag">Operations</div>
-      <div class="card-icon">🚢</div>
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 14l1.5 5.5c.2.7 1 1.2 1.8 1H16.7c.8 0 1.6-.5 1.8-1.2L20 14" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M6 14V6.5c0-.6.4-1 1-1h2v3M12 14V4.5M15 14V8.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M4 14h16" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
       <div class="card-title">SHIP SEARCH</div>
       <div class="card-desc">
         Look up which ship — UCS Havock or UCS Takanami — is running at a given date and time, or view the full day's timetable.
@@ -430,7 +512,12 @@
   <div class="official-row">
 
     <a class="official-card" href="https://bridgecommand.space" target="_blank" rel="noopener">
-      <div class="official-icon">🌐</div>
+      <div class="official-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+          <circle cx="12" cy="12" r="8.5" stroke="white" stroke-width="1.5"/>
+          <path d="M3.5 12h17M12 3.5c2.5 2.3 3.8 5.3 3.8 8.5s-1.3 6.2-3.8 8.5c-2.5-2.3-3.8-5.3-3.8-8.5S9.5 5.8 12 3.5z" stroke="white" stroke-width="1.4"/>
+        </svg>
+      </div>
       <div class="official-text">
         <div class="official-title">Bridge Command Website</div>
         <div class="official-sub">bridgecommand.space</div>
@@ -439,7 +526,14 @@
     </a>
 
     <a class="official-card" href="https://discord.gg/98efv2Tf49" target="_blank" rel="noopener">
-      <div class="official-icon">💬</div>
+      <div class="official-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+          <path d="M4 5.5C6 4.5 8.2 4 12 4s6 0.5 8 1.5c1.2 3 1.8 6.5 1.6 10.3-2 1.5-4 2.3-6 2.7l-.8-1.5" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 5.5c-1.2 3-1.8 6.5-1.6 10.3 2 1.5 4 2.3 6 2.7l.8-1.5" stroke="white" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <ellipse cx="9" cy="13" rx="1.4" ry="1.6" fill="white"/>
+          <ellipse cx="15" cy="13" rx="1.4" ry="1.6" fill="white"/>
+        </svg>
+      </div>
       <div class="official-text">
         <div class="official-title">Bridge Command Discord</div>
         <div class="official-sub">Join the community server</div>
