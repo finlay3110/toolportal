@@ -64,6 +64,7 @@
     align-items:center;
     text-align:center;
     margin-bottom:44px;
+    --enter-dur:0.7s;
   }
 
   .logo-ring{
@@ -111,6 +112,8 @@
     margin:26px 0 0;
     background:linear-gradient(90deg, transparent, var(--orange), transparent);
     opacity:0.7;
+    --enter-dur:0.7s;
+    --enter-delay:0.15s;
   }
 
   main{
@@ -382,6 +385,17 @@
     box-shadow:0 0 8px rgba(196,30,58,0.7);
   }
 
+  /* Answered too slowly to judge — not the same claim as "down". */
+  .status-dot.slow{
+    background:#C8862B;
+    box-shadow:0 0 8px rgba(200,134,43,0.7);
+  }
+
+  /* Not probed at all, e.g. the browser itself is offline. */
+  .status-dot.unknown{
+    background:#8C949E;
+  }
+
   @keyframes pulse{
     0%, 100%{ opacity:0.4; }
     50%{ opacity:1; }
@@ -393,41 +407,20 @@
     to{ opacity:1; transform:translateY(0); }
   }
 
-  header{
+  /* Timing comes from --enter-dur / --enter-delay, which each element sets in
+     its own rule, so nothing needs a second block just to be animated. */
+  header, .divider, .card, .official-card, .section-label, footer{
     opacity:0;
-    animation:fadeInUp 0.7s ease forwards;
+    animation:fadeInUp var(--enter-dur, 0.6s) ease var(--enter-delay, 0s) forwards;
   }
 
-  .divider{
-    opacity:0;
-    animation:fadeInUp 0.7s ease forwards;
-    animation-delay:0.15s;
-  }
+  main .card:nth-of-type(1){ --enter-delay:0.25s; }
+  main .card:nth-of-type(2){ --enter-delay:0.35s; }
+  main .card:nth-of-type(3){ --enter-delay:0.45s; }
+  main .card:nth-of-type(4){ --enter-delay:0.55s; }
 
-  .card, .official-card{
-    opacity:0;
-    animation:fadeInUp 0.6s ease forwards;
-  }
-
-  main .card:nth-of-type(1){ animation-delay:0.25s; }
-  main .card:nth-of-type(2){ animation-delay:0.35s; }
-  main .card:nth-of-type(3){ animation-delay:0.45s; }
-  main .card:nth-of-type(4){ animation-delay:0.55s; }
-
-  .section-label{
-    opacity:0;
-    animation:fadeInUp 0.6s ease forwards;
-    animation-delay:0.65s;
-  }
-
-  .official-row .official-card:nth-of-type(1){ animation-delay:0.75s; }
-  .official-row .official-card:nth-of-type(2){ animation-delay:0.85s; }
-
-  footer{
-    opacity:0;
-    animation:fadeInUp 0.6s ease forwards;
-    animation-delay:0.95s;
-  }
+  .official-row .official-card:nth-of-type(1){ --enter-delay:0.75s; }
+  .official-row .official-card:nth-of-type(2){ --enter-delay:0.85s; }
 
   @media (prefers-reduced-motion: reduce){
     header, .divider, .card, .official-card, .section-label, footer{
@@ -441,12 +434,22 @@
     margin-top:44px;
     text-align:center;
     font-size:11.5px;
-    color:#7C86AC;
+    /* 5.53:1 on the lightest point of the background gradient (#1B2A5E). */
+    color:#9AA4C8;
     line-height:1.6;
     max-width:560px;
+    --enter-delay:0.95s;
   }
 
   footer strong{ color:#A6AFD6; }
+
+  /* Dimmer than the footer body, but still 4.61:1. */
+  .version-line{
+    margin-top:14px;
+    color:#8C95B6;
+    font-size:10.5px;
+    letter-spacing:0.04em;
+  }
 
   /* Official links section */
   .section-label{
@@ -458,8 +461,10 @@
     color:#8B96C2;
     font-family:'Orbitron', sans-serif;
     font-size:12px;
+    font-weight:600;
     letter-spacing:0.16em;
     text-transform:uppercase;
+    --enter-delay:0.65s;
   }
   .section-label::before,
   .section-label::after{
@@ -548,7 +553,7 @@
     <div class="logo-ring">
       <img id="logoImg" alt="UCN logo">
     </div>
-    <div class="wordmark">UNITED CONFEDERATION <span>NAVY</span></div>
+    <h1 class="wordmark">UNITED CONFEDERATION <span>NAVY</span></h1>
     <div class="tagline">Fleet Digital Access Portal</div>
     <div class="divider"></div>
   </header>
@@ -567,7 +572,7 @@
               </svg>
             </div>
             <div>
-              <div class="card-title">MISSION TOOLS</div>
+              <h2 class="card-title">MISSION TOOLS</h2>
               <div class="card-desc" style="margin-bottom:0;">Reference tools for use during an active mission.</div>
             </div>
           </div>
@@ -588,7 +593,7 @@
               </svg>
             </div>
             <div class="subtool-text">
-              <div class="subtool-title">Mission Companion</div>
+              <h3 class="subtool-title">Mission Companion</h3>
               <div class="subtool-desc">In-bridge reference companion for active missions — procedures, guides, and operational tools.</div>
             </div>
             <div class="status-row" data-status-url="https://mission-companion.netlify.app">
@@ -605,7 +610,7 @@
               </svg>
             </div>
             <div class="subtool-text">
-              <div class="subtool-title">Engineering Reference</div>
+              <h3 class="subtool-title">Engineering Reference</h3>
               <div class="subtool-desc">Power, thermal, warp, and damage control reference tools for engineering watch.</div>
             </div>
             <div class="status-row" data-status-url="https://engineeringrefucn.netlify.app">
@@ -623,7 +628,7 @@
               </svg>
             </div>
             <div class="subtool-text">
-              <div class="subtool-title">Nav Reference</div>
+              <h3 class="subtool-title">Nav Reference</h3>
               <div class="subtool-desc">Navigation and radar reference tool for plotting and interpreting bridge instruments.</div>
             </div>
             <div class="status-row" data-status-url="https://navtoolucn.netlify.app">
@@ -641,7 +646,7 @@
               </svg>
             </div>
             <div class="subtool-text">
-              <div class="subtool-title">Comms Log</div>
+              <h3 class="subtool-title">Comms Log</h3>
               <div class="subtool-desc">Log and reference bridge communications during a mission.</div>
             </div>
             <div class="status-row" data-status-url="https://commslog.netlify.app">
@@ -663,7 +668,7 @@
           <path d="M13 10h6M13 14h4" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
         </svg>
       </div>
-      <div class="card-title">ID CARD GENERATOR</div>
+      <h2 class="card-title">ID CARD GENERATOR</h2>
       <div class="card-desc">
         Build and print a fleet-standard crew ID card — rank, division, clearance level, photo, and barcode or QR, formatted to true CR-80 size.
       </div>
@@ -683,7 +688,7 @@
           <path d="M5 13c0 3 3 5.5 7 6 4-0.5 7-3 7-6" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
         </svg>
       </div>
-      <div class="card-title">SHANTY SONGBOOK</div>
+      <h2 class="card-title">SHANTY SONGBOOK</h2>
       <div class="card-desc">
         The full digital songbook — searchable lyrics, favourites, chorus highlighting, and offline-ready access for every watch.
       </div>
@@ -703,7 +708,7 @@
           <path d="M4 14h16" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
         </svg>
       </div>
-      <div class="card-title">SHIP SEARCH</div>
+      <h2 class="card-title">SHIP SEARCH</h2>
       <div class="card-desc">
         Look up which ship — UCS Havock or UCS Takanami — is running at a given date and time, or view the full day's timetable.
       </div>
@@ -716,7 +721,7 @@
 
   </main>
 
-  <div class="section-label">Official Links</div>
+  <h2 class="section-label">Official Links</h2>
 
   <div class="official-row">
 
@@ -728,7 +733,7 @@
         </svg>
       </div>
       <div class="official-text">
-        <div class="official-title">Bridge Command Website</div>
+        <h3 class="official-title">Bridge Command Website</h3>
         <div class="official-sub">bridgecommand.space</div>
       </div>
       <div class="official-badge">Official</div>
@@ -744,7 +749,7 @@
         </svg>
       </div>
       <div class="official-text">
-        <div class="official-title">Bridge Command Discord</div>
+        <h3 class="official-title">Bridge Command Discord</h3>
         <div class="official-sub">Join the community server</div>
       </div>
       <div class="official-badge">Official</div>
@@ -754,45 +759,97 @@
 
   <footer>
     <strong>UCN Fleet Digital Suite</strong><br>
-    The three tools above are fan-made projects and are not approved by or affiliated with Bridge Command / The London Space Elevator Limited.<br>
+    The seven tools above are fan-made projects and are not approved by or affiliated with Bridge Command / The London Space Elevator Limited.<br>
     The Official Links section points to Bridge Command's own website and Discord.
-    <div style="margin-top:14px; color:#5C6690; font-size:10.5px; letter-spacing:0.04em;">UCN Portal v1.1 — 17 July 2026</div>
+    <div class="version-line">UCN Portal v1.1 — 17 July 2026</div>
   </footer>
 </div>
 
 <script>
-  // subtle starfield
+  // ---- Subtle starfield ----
   const canvas = document.getElementById('stars');
   const ctx = canvas.getContext('2d');
-  function resize(){
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  const stars = Array.from({length: 110}, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
+  // Positions are normalised to 0..1 and multiplied up at draw time, so a
+  // resize re-lays the field out across the new viewport instead of leaving it
+  // clumped in the old one's top-left corner. Keeping one fixed pool and
+  // varying how much of it is drawn also means a resize never reshuffles the
+  // stars that were already on screen — which matters on mobile, where the
+  // address bar collapsing fires a resize mid-scroll.
+  const STAR_POOL = 260;
+  const stars = Array.from({length: STAR_POOL}, () => ({
+    x: Math.random(),
+    y: Math.random(),
     r: Math.random() * 1.2 + 0.2,
     a: Math.random() * 0.6 + 0.15,
     tw: Math.random() * 0.02 + 0.005,
     dir: Math.random() > 0.5 ? 1 : -1
   }));
 
-  function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    for(const s of stars){
-      s.a += s.tw * s.dir;
-      if(s.a > 0.75 || s.a < 0.1) s.dir *= -1;
+  let viewW = 0, viewH = 0, visible = 0, frame = null;
+
+  function animating(){ return frame !== null; }
+
+  function resize(){
+    viewW = window.innerWidth;
+    viewH = window.innerHeight;
+    // Back the canvas with real device pixels so the stars are not soft on
+    // high-DPI screens, then scale the context so drawing stays in CSS pixels.
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width  = Math.round(viewW * dpr);
+    canvas.height = Math.round(viewH * dpr);
+    canvas.style.width  = viewW + 'px';
+    canvas.style.height = viewH + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    // Hold density roughly constant instead of a fixed count that thins out on
+    // a large monitor and crowds a phone. /9000 keeps a typical desktop at the
+    // original 110 or so.
+    visible = Math.max(40, Math.min(STAR_POOL, Math.round(viewW * viewH / 9000)));
+    // While animating, the running loop picks the new size up on its own.
+    if(!animating()) render(false);
+  }
+
+  function render(animate){
+    ctx.clearRect(0, 0, viewW, viewH);
+    for(let i = 0; i < visible; i++){
+      const s = stars[i];
+      if(animate){
+        s.a += s.tw * s.dir;
+        if(s.a > 0.75 || s.a < 0.1) s.dir *= -1;
+      }
       ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.arc(s.x * viewW, s.y * viewH, s.r, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(255,255,255,${s.a})`;
       ctx.fill();
     }
-    requestAnimationFrame(draw);
   }
-  draw();
+
+  function loop(){
+    render(true);
+    frame = requestAnimationFrame(loop);
+  }
+
+  // The CSS already drops the entrance animations under reduced motion; the
+  // twinkle loop has to opt out in script, and react if the preference is
+  // toggled while the page is open.
+  function applyMotionPreference(){
+    if(reduceMotion.matches){
+      if(frame !== null){ cancelAnimationFrame(frame); frame = null; }
+      render(false);
+    }else if(frame === null){
+      loop();
+    }
+  }
+
+  resize();
+  applyMotionPreference();
+  window.addEventListener('resize', resize);
+  if(reduceMotion.addEventListener){
+    reduceMotion.addEventListener('change', applyMotionPreference);
+  }else{
+    reduceMotion.addListener(applyMotionPreference);   // Safari < 14
+  }
 
   // ---- Logo bitmap: stored once on the apple-touch-icon, reused everywhere ----
   const logoHref = document.getElementById('logoIcon').getAttribute('href');
@@ -815,32 +872,79 @@
   const manifestBlob = new Blob([JSON.stringify(manifest)], {type: 'application/json'});
   document.getElementById('manifestLink').setAttribute('href', URL.createObjectURL(manifestBlob));
 
-  // ---- Status check for each tool ----
-  // Note: cross-origin sites without CORS headers return an "opaque" response,
-  // so we can only detect reachable vs unreachable, not exact HTTP status codes.
-  async function checkStatus(url, dot, text){
+  // ---- Offline shell for the installed app ----
+  // Without this, "Add to Home Screen" produces an app that shows nothing at
+  // all when opened offline. Registration is best effort: a service worker
+  // needs a secure context and a same-origin script file, so this quietly does
+  // nothing when the page is opened over file:// or plain http.
+  if('serviceWorker' in navigator){
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js').catch(() => {});
+    });
+  }
+
+  // ---- Reachability check for each tool ----
+  // These tools are cross-origin and send no CORS headers, so a no-cors fetch
+  // is the only probe available to us and its response is opaque: it tells us
+  // the host answered, not that it answered with a 200. Say "Reachable" rather
+  // than "Online" so the label matches what was actually measured, and keep a
+  // timeout visually distinct from an outright failure so that a slow-but-alive
+  // site is not reported as down.
+  const PROBE_TIMEOUT_MS = 8000;
+
+  function setStatus(row, state, label, detail){
+    row.querySelector('.status-dot').className = 'status-dot ' + state;
+    row.querySelector('.status-text').textContent = label;
+    row.title = detail;
+  }
+
+  async function checkStatus(row){
+    const url = row.getAttribute('data-status-url');
+
+    // Without a connection every probe would fail, which would paint all seven
+    // tools red and blame them for the browser's own state.
+    if(navigator.onLine === false){
+      setStatus(row, 'unknown', 'No connection',
+        'This browser is offline, so ' + url + ' could not be probed.');
+      return;
+    }
+
+    setStatus(row, 'checking', row.dataset.checkingLabel, 'Probing ' + url + '…');
+
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 6000);
+    const timer = setTimeout(() => controller.abort(), PROBE_TIMEOUT_MS);
     try{
-      await fetch(url, { mode: 'no-cors', cache: 'no-store', signal: controller.signal });
-      clearTimeout(timeout);
-      dot.classList.remove('checking');
-      dot.classList.add('up');
-      text.textContent = 'Online';
+      await fetch(url, { mode:'no-cors', cache:'no-store', signal:controller.signal });
+      setStatus(row, 'up', 'Reachable',
+        url + ' answered. The response is opaque, so this confirms the host '
+        + 'responded — not that the tool itself loaded correctly.');
     }catch(err){
-      clearTimeout(timeout);
-      dot.classList.remove('checking');
-      dot.classList.add('down');
-      text.textContent = 'Unreachable';
+      if(controller.signal.aborted){
+        setStatus(row, 'slow', 'No response',
+          url + ' did not answer within ' + (PROBE_TIMEOUT_MS / 1000)
+          + ' seconds. It may be slow rather than down.');
+      }else{
+        setStatus(row, 'down', 'Unreachable',
+          url + ' could not be reached.');
+      }
+    }finally{
+      clearTimeout(timer);
     }
   }
 
-  document.querySelectorAll('.status-row').forEach(row => {
-    const url = row.getAttribute('data-status-url');
-    const dot = row.querySelector('.status-dot');
-    const text = row.querySelector('.status-text');
-    checkStatus(url, dot, text);
+  const statusRows = Array.from(document.querySelectorAll('.status-row'));
+  statusRows.forEach(row => {
+    // Announce the result, not every intermediate "Checking…" repaint.
+    row.setAttribute('role', 'status');
+    row.setAttribute('aria-live', 'polite');
+    // Cards and sub-tool rows use slightly different wording while checking.
+    row.dataset.checkingLabel = row.querySelector('.status-text').textContent;
+    checkStatus(row);
   });
+
+  // Re-probe when connectivity changes rather than leaving a stale verdict.
+  window.addEventListener('online',  () => statusRows.forEach(r => checkStatus(r)));
+  window.addEventListener('offline', () => statusRows.forEach(r => checkStatus(r)));
 </script>
 
 
