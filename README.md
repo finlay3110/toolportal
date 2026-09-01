@@ -6,7 +6,7 @@ A landing page for the United Confederation Navy (UCN) fan-made digital tool sui
 
 ## What's in the suite
 
-Four tools sit behind the **Mission Tools** dropdown — the reference tools meant for use during an active mission:
+Five tools sit behind the **Mission Tools** dropdown — the reference tools meant for use during an active mission:
 
 | Tool | Description |
 |---|---|
@@ -14,6 +14,7 @@ Four tools sit behind the **Mission Tools** dropdown — the reference tools mea
 | **Engineering Reference** | Power, thermal, warp, and damage control reference tools for engineering watch. |
 | **Nav Reference** | Navigation and radar reference tool for plotting and interpreting bridge instruments. |
 | **Comms Log** | Log and reference bridge communications during a mission. |
+| **General Log** | Keep your own mission log from any station you're assigned to. |
 
 The remaining three sit on their own cards:
 
