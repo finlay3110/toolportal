@@ -16,13 +16,14 @@ Five tools sit behind the **Mission Tools** dropdown — the reference tools mea
 | **Comms Log** | Log and reference bridge communications during a mission. |
 | **General Log** | Keep your own mission log from any station you're assigned to. |
 
-The remaining three sit on their own cards:
+The remaining four sit on their own cards:
 
 | Tool | Description |
 |---|---|
 | **ID Card Generator** | Build and print a fleet-standard crew ID card — rank, division, clearance level, photo, and barcode/QR, formatted to true CR-80 card size. |
 | **Shanty Songbook** | The full digital songbook — searchable lyrics, favourites, chorus highlighting, and offline-ready access. |
 | **Ship Search** | Looks up which ship (UCS Havock or UCS Takanami) is running at a given date/time, or shows the full day's schedule. |
+| **Mission Stats** | Import a CSV of your deployments from the Bridge Command portal and track your mission history. |
 
 The portal also links out to Bridge Command's official website and Discord server for anyone looking for the source community.
 
