@@ -418,9 +418,10 @@
   main .card:nth-of-type(2){ --enter-delay:0.35s; }
   main .card:nth-of-type(3){ --enter-delay:0.45s; }
   main .card:nth-of-type(4){ --enter-delay:0.55s; }
+  main .card:nth-of-type(5){ --enter-delay:0.65s; }
 
-  .official-row .official-card:nth-of-type(1){ --enter-delay:0.75s; }
-  .official-row .official-card:nth-of-type(2){ --enter-delay:0.85s; }
+  .official-row .official-card:nth-of-type(1){ --enter-delay:0.85s; }
+  .official-row .official-card:nth-of-type(2){ --enter-delay:0.95s; }
 
   @media (prefers-reduced-motion: reduce){
     header, .divider, .card, .official-card, .section-label, footer{
@@ -438,7 +439,7 @@
     color:#9AA4C8;
     line-height:1.6;
     max-width:560px;
-    --enter-delay:0.95s;
+    --enter-delay:1.05s;
   }
 
   footer strong{ color:#A6AFD6; }
@@ -464,7 +465,7 @@
     font-weight:600;
     letter-spacing:0.16em;
     text-transform:uppercase;
-    --enter-delay:0.65s;
+    --enter-delay:0.75s;
   }
   .section-label::before,
   .section-label::after{
@@ -738,6 +739,25 @@
       </div>
     </div>
 
+    <div class="card">
+      <div class="card-tag">Records</div>
+      <div class="card-icon">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 3.5V20h16.5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8.5 20v-6M13 20v-9.5M17.5 20v-4.5" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h2 class="card-title">MISSION STATS</h2>
+      <div class="card-desc">
+        Import a CSV of your deployments from the Bridge Command portal and track your mission history.
+      </div>
+      <a class="card-btn" href="https://missionstats.netlify.app" target="_blank" rel="noopener">Open Tool →</a>
+      <div class="status-row" data-status-url="https://missionstats.netlify.app">
+        <div class="status-dot checking"></div>
+        <span class="status-text">Checking status…</span>
+      </div>
+    </div>
+
   </main>
 
   <h2 class="section-label">Official Links</h2>
@@ -778,7 +798,7 @@
 
   <footer>
     <strong>UCN Fleet Digital Suite</strong><br>
-    The eight tools above are fan-made projects and are not approved by or affiliated with Bridge Command / The London Space Elevator Limited.<br>
+    The nine tools above are fan-made projects and are not approved by or affiliated with Bridge Command / The London Space Elevator Limited.<br>
     The Official Links section points to Bridge Command's own website and Discord.
     <div class="version-line">UCN Portal v1.1 — 17 July 2026</div>
   </footer>
